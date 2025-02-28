@@ -13,6 +13,11 @@ import spring_project.service.AuthService;
 @RequestMapping("/auth")
 public class AuthController {
 
+    @GetMapping("/example")
+    public String getExample() {
+        return "Hello, this is a GET response!";
+    }
+
     @Autowired
     private AuthService authService;
 

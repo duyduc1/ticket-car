@@ -1,0 +1,60 @@
+package spring_project.dto;
+
+public class CoachRequets {
+
+    private Long CoachId;
+    private Long licensePlateNumberCoach;
+    private String coachName;
+    private String url;
+    private String publicId;
+
+    public CoachRequets() {
+
+    }
+
+    public CoachRequets( Long licensePlateNumberCoach, String coachName) {
+        this.licensePlateNumberCoach = licensePlateNumberCoach;
+        this.coachName = coachName;
+    }
+
+    public void setCoachId(Long coachId) {
+        CoachId = coachId;
+    }
+
+    public void setLicensePlateNumberCoach(Long licensePlateNumberCoach) {
+        this.licensePlateNumberCoach = licensePlateNumberCoach;
+    }
+
+    public void setCoachName(String coachName) {
+        this.coachName = coachName;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setPublicId(String publicId) {
+        this.publicId = publicId;
+    }
+
+    public Long getCoachId() {
+        return CoachId;
+    }
+
+    public Long getLicensePlateNumberCoach() {
+        return licensePlateNumberCoach;
+    }
+
+    public String getCoachName() {
+        return coachName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getPublicId() {
+        return publicId;
+    }
+
+}

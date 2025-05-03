@@ -15,7 +15,7 @@ public class DriverRequets {
 
     }
 
-    public DriverRequets( String gender, String descriptions, Long yearOfBirth, Long phoneNumber, String fullName) {
+    public DriverRequets(String fullName, Long phoneNumber, Long yearOfBirth, String descriptions, String gender) {
         this.gender = gender;
         this.descriptions = descriptions;
         this.yearOfBirth = yearOfBirth;

@@ -33,8 +33,8 @@ public class DriverService {
                 .map(driverMapper::toDto).collect(Collectors.toList());
     }
 
-    public DriverRequets getDriverById(Long id){
-        Driver driver = driverRepository.findById(id).orElse(null);
+    public DriverRequets getDriverById(Long driverId){
+        Driver driver = driverRepository.findById(driverId).orElse(null);
         return driverMapper.toDto(driver);
     }
 
@@ -87,14 +87,14 @@ public class DriverService {
         driverRepository.save(driver);
     }
 
-    public void deleteDriver(Long id) throws IOException {
-        Driver driver = driverRepository.findById(id).orElse(null);
+    public void deleteDriver(Long driverId) throws IOException {
+        Driver driver = driverRepository.findById(driverId).orElse(null);
         cloudinary.uploader().destroy(driver.getPublicId(), ObjectUtils.emptyMap());
         driverRepository.delete(driver);
     }
 
-    public Driver findDriverById(Long id){
-        Optional<Driver> driver = driverRepository.findById(id);
+    public Driver findDriverById(Long driverId){
+        Optional<Driver> driver = driverRepository.findById(driverId);
         return driver.orElse(null);
     }
 }

@@ -55,8 +55,8 @@ public class DriverService {
         }
     }
 
-    public void updateDriver(Long id , MultipartFile file , DriverRequets driverRequets) throws IOException {
-        Driver driver = driverRepository.findById(id).orElse(null);
+    public void updateDriver(Long driverId , MultipartFile file , DriverRequets driverRequets) throws IOException {
+        Driver driver = driverRepository.findById(driverId).orElse(null);
         if (file != null && !file.isEmpty()) {
             cloudinary.uploader().destroy(driver.getPublicId(), ObjectUtils.emptyMap());
             Map<String , Object> newDataDriver = this.cloudinary.uploader().upload(file.getBytes(),Map.of());

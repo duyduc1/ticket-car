@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/admin/**" , "/api/manager-user/**" , "/api-driver/**").hasAuthority("ADMIN")
                         .requestMatchers("/user/**").hasAuthority("USER")
-                        .requestMatchers("/adminuser/**" , "/useradmin-all/**"  ).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/adminuser/**" , "/useradmin-all-driver/**"  ).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

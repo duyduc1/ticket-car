@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CoachId;
+    private Long coachId;
     private Long licensePlateNumberCoach;
     private String coachName;
     private String url;

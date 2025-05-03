@@ -18,13 +18,13 @@ import java.util.Map;
 public class DriverController {
     private final DriverService driverService;
 
-    @GetMapping("/useradmin-all")
+    @GetMapping("/useradmin-all-driver")
     public ResponseEntity<List<DriverRequets>> getAllDrivers() {
         List<DriverRequets> allDrivers = driverService.getListDrivers();
         return new ResponseEntity<>(allDrivers, HttpStatus.OK);
     }
 
-    @GetMapping("/useradmin-all/{driverId}")
+    @GetMapping("/useradmin-all-driver/{driverId}")
     public ResponseEntity<DriverRequets> getDriverById(@PathVariable Long driverId) {
         DriverRequets driverById = driverService.getDriverById(driverId);
         return new ResponseEntity<>(driverById, HttpStatus.OK);

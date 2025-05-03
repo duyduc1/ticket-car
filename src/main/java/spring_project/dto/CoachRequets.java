@@ -12,7 +12,7 @@ public class CoachRequets {
 
     }
 
-    public CoachRequets( Long licensePlateNumberCoach, String coachName) {
+    public CoachRequets(String coachName, Long licensePlateNumberCoach) {
         this.licensePlateNumberCoach = licensePlateNumberCoach;
         this.coachName = coachName;
     }

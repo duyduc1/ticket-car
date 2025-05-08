@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Table(name = "driver")
 @Entity
@@ -22,5 +23,12 @@ public class Driver {
     private String gender;
     private String url;
     private String publicId;
-    
+
+    @OneToOne(mappedBy = "driver" , cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private TripCar tripCar;
+
+    public TripCar getTripCar() {
+        return tripCar;
+    }
 }

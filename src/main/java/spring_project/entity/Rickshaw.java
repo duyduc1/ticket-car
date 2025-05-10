@@ -24,7 +24,7 @@ public class Rickshaw {
     private String url;
     private String publicId;
 
-    @OneToOne(mappedBy = "rickhshaw" , cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "rickshaw" , cascade = CascadeType.ALL)
     @ToString.Exclude
     private TripCar tripCar;
 

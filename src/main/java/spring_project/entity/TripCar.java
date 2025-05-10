@@ -31,19 +31,19 @@ public class TripCar {
     private Long priceSeatNumber; // giá ghế
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "driver_id" , referencedColumnName = "id")
+    @JoinColumn(name = "driver_id" , referencedColumnName = "driverId")
     @JsonIgnore
     @ToString.Exclude
     private Driver driver;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "coach_id" , referencedColumnName = "id")
+    @JoinColumn(name = "coach_id" , referencedColumnName = "coachId")
     @JsonIgnore
     @ToString.Exclude
     private Coach coach;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rickshaw_id" , referencedColumnName = "id")
+    @JoinColumn(name = "rickshaw_id" , referencedColumnName = "rickshawId")
     @JsonIgnore
     @ToString.Exclude
     private Rickshaw rickshaw;

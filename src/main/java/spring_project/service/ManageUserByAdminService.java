@@ -8,6 +8,7 @@ import spring_project.mapper.UserMapper;
 import spring_project.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,5 +54,10 @@ public class ManageUserByAdminService {
             userRepository.delete(user);
         }
         return true;
+    }
+
+    public User findById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null);
     }
 }

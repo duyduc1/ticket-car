@@ -45,11 +45,11 @@ public class RickShawService {
             Rickshaw rickshaw = new Rickshaw();
             rickshaw.setUrl((String) dataRickShaw.get("url"));
             rickshaw.setPublicId((String) dataRickShaw.get("publicId"));
-            rickshaw.setGender(rickShawRequets.getGender());
-            rickshaw.setPhoneNumber(rickshaw.getPhoneNumber());
-            rickshaw.setFullName(rickShawRequets.getFullName());
-            rickshaw.setDescriptions(rickShawRequets.getDescriptions());
-            rickshaw.setYearOfBirth(rickShawRequets.getYearOfBirth());
+            rickshaw.setGender(rickShawRequets.getRickShawgender());
+            rickshaw.setPhoneNumber(rickShawRequets.getRickShawphoneNumber());
+            rickshaw.setFullName(rickShawRequets.getRickShawfullName());
+            rickshaw.setDescriptions(rickShawRequets.getRickShawdescriptions());
+            rickshaw.setYearOfBirth(rickShawRequets.getRickShawyearOfBirth());
             return dataRickShaw;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -65,24 +65,24 @@ public class RickShawService {
             rickshaw.setPublicId((String) newDataRickShaw.get("publicId"));
         }
 
-        if (rickShawRequets.getFullName() != null) {
-            rickshaw.setFullName(rickShawRequets.getFullName());
+        if (rickShawRequets.getRickShawfullName() != null) {
+            rickshaw.setFullName(rickShawRequets.getRickShawfullName());
         }
 
-        if (rickShawRequets.getDescriptions() != null) {
-            rickshaw.setDescriptions(rickShawRequets.getDescriptions());
+        if (rickShawRequets.getRickShawdescriptions() != null) {
+            rickshaw.setDescriptions(rickShawRequets.getRickShawdescriptions());
         }
 
-        if (rickShawRequets.getYearOfBirth() != null) {
-            rickshaw.setYearOfBirth(rickShawRequets.getYearOfBirth());
+        if (rickShawRequets.getRickShawyearOfBirth() != null) {
+            rickshaw.setYearOfBirth(rickShawRequets.getRickShawyearOfBirth());
         }
 
-        if (rickShawRequets.getPhoneNumber() != null) {
-            rickshaw.setPhoneNumber(rickShawRequets.getPhoneNumber());
+        if (rickShawRequets.getRickShawphoneNumber() != null) {
+            rickshaw.setPhoneNumber(rickShawRequets.getRickShawphoneNumber());
         }
 
-        if (rickShawRequets.getGender() != null) {
-            rickshaw.setGender(rickShawRequets.getGender());
+        if (rickShawRequets.getRickShawgender() != null) {
+            rickshaw.setGender(rickShawRequets.getRickShawgender());
         }
 
         rickShawRepository.save(rickshaw);

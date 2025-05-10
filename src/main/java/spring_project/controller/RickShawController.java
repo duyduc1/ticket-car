@@ -32,13 +32,13 @@ public class RickShawController {
     @PostMapping("/api-rickshaw/create-rickshaw")
     public ResponseEntity<Map<String,Object>> createRickShaw(
             @RequestParam(value = "image" , required = false) MultipartFile file,
-            @RequestParam(value = "fullName", required = false) String fullName,
-            @RequestParam(value = "phoneNumber" , required = false) Long phoneNumber,
-            @RequestParam(value = "yearOfBirth" , required = false) Long yearOfBirth,
-            @RequestParam(value = "descriptions" , required = false) String descriptions,
-            @RequestParam(value = "gender" , required = false) String gender) {
+            @RequestParam(value = "rickShawfullName", required = false) String rickShawfullName,
+            @RequestParam(value = "rickShawphoneNumber" , required = false) Long rickShawphoneNumber,
+            @RequestParam(value = "rickShawyearOfBirth" , required = false) Long rickShawyearOfBirth,
+            @RequestParam(value = "rickShawdescriptions" , required = false) String rickShawdescriptions,
+            @RequestParam(value = "rickShawgender" , required = false) String rickShawgender) {
         try {
-            RickShawRequets rickShawRequets = new RickShawRequets(fullName , phoneNumber , yearOfBirth , descriptions , gender);
+            RickShawRequets rickShawRequets = new RickShawRequets(rickShawfullName , rickShawphoneNumber , rickShawyearOfBirth , rickShawdescriptions , rickShawgender);
             Map<String , Object> dataRickShaws = rickShawService.createRickShaw(file , rickShawRequets);
             return new ResponseEntity<>(dataRickShaws, HttpStatus.OK);
         } catch (RuntimeException e) {
@@ -50,13 +50,13 @@ public class RickShawController {
     public ResponseEntity<Map<String,Object>> updateRickShaw(
             @PathVariable Long rickshawId,
             @RequestParam(value = "image" , required = false) MultipartFile file,
-            @RequestParam(value = "fullName" , required = false) String fullName,
-            @RequestParam(value = "phoneNumber" , required = false) Long phoneNumber,
-            @RequestParam(value = "yearOfBirth" , required = false) Long yearOfBirth,
-            @RequestParam(value = "descriptions" , required = false) String descriptions,
-            @RequestParam(value = "gender" , required = false) String gender){
+            @RequestParam(value = "rickShawfullName" , required = false) String rickShawfullName,
+            @RequestParam(value = "rickShawphoneNumber" , required = false) Long rickShawphoneNumber,
+            @RequestParam(value = "rickShawyearOfBirth" , required = false) Long rickShawyearOfBirth,
+            @RequestParam(value = "rickShawdescriptions" , required = false) String rickShawdescriptions,
+            @RequestParam(value = "rickShawgender" , required = false) String rickShawgender){
         try {
-            RickShawRequets rickShawRequets = new RickShawRequets(fullName , phoneNumber , yearOfBirth , descriptions , gender);
+            RickShawRequets rickShawRequets = new RickShawRequets(rickShawfullName , rickShawphoneNumber , rickShawyearOfBirth , rickShawdescriptions , rickShawgender);
             rickShawService.updateRickShaw(rickshawId , file , rickShawRequets);
             return new ResponseEntity<>(Map.of("error", HttpStatus.NO_CONTENT), HttpStatus.OK);
         } catch (Exception e) {

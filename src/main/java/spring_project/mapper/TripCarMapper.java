@@ -21,10 +21,10 @@ public interface TripCarMapper {
     @Mapping(source = "driver.gender" , target = "gender")
     // Phụ xe
     @Mapping(source = "rickshaw.rickshawId" , target = "rickshawId")
-    @Mapping(source = "rickshaw.fullName" , target = "fullName")
-    @Mapping(source = "rickshaw.phoneNumber" , target = "phoneNumber")
-    @Mapping(source = "rickshaw.yearOfBirth" , target = "yearOfBirth")
-    @Mapping(source = "rickshaw.gender" , target = "gender")
+    @Mapping(source = "rickshaw.fullName" , target = "rickShawfullName")
+    @Mapping(source = "rickshaw.phoneNumber" , target = "rickShawphoneNumber")
+    @Mapping(source = "rickshaw.yearOfBirth" , target = "rickShawyearOfBirth")
+    @Mapping(source = "rickshaw.gender" , target = "rickShawgender")
     TripCarRequets toDTO(TripCar tripCar);
 
     @Mapping(source = "coachId" , target = "coach.coachId")

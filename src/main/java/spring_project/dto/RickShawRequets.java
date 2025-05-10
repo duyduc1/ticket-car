@@ -2,23 +2,23 @@ package spring_project.dto;
 
 public class RickShawRequets {
     private Long rickShawId;
-    private String fullName;
-    private Long phoneNumber;
-    private Long yearOfBirth;
-    private String descriptions;
-    private String gender;
+    private String rickShawfullName;
+    private Long rickShawphoneNumber;
+    private Long rickShawyearOfBirth;
+    private String rickShawdescriptions;
+    private String rickShawgender;
     private String url;
     private String publicId;
 
     public RickShawRequets() {
     }
 
-    public RickShawRequets(String fullName, Long phoneNumber, Long yearOfBirth, String descriptions, String gender) {
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.yearOfBirth = yearOfBirth;
-        this.descriptions = descriptions;
-        this.gender = gender;
+    public RickShawRequets(String rickShawfullName, Long rickShawphoneNumber, Long rickShawyearOfBirth, String rickShawdescriptions, String rickShawgender) {
+        this.rickShawfullName = rickShawfullName;
+        this.rickShawphoneNumber = rickShawphoneNumber;
+        this.rickShawyearOfBirth = rickShawyearOfBirth;
+        this.rickShawdescriptions = rickShawdescriptions;
+        this.rickShawgender = rickShawgender;
     }
 
     public Long getRickShawId() {
@@ -45,44 +45,44 @@ public class RickShawRequets {
         this.url = url;
     }
 
-    public String getGender() {
-        return gender;
+    public Long getRickShawphoneNumber() {
+        return rickShawphoneNumber;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setRickShawphoneNumber(Long rickShawphoneNumber) {
+        this.rickShawphoneNumber = rickShawphoneNumber;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getRickShawfullName() {
+        return rickShawfullName;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setRickShawfullName(String rickShawfullName) {
+        this.rickShawfullName = rickShawfullName;
     }
 
-    public Long getYearOfBirth() {
-        return yearOfBirth;
+    public Long getRickShawyearOfBirth() {
+        return rickShawyearOfBirth;
     }
 
-    public void setYearOfBirth(Long yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public void setRickShawyearOfBirth(Long rickShawyearOfBirth) {
+        this.rickShawyearOfBirth = rickShawyearOfBirth;
     }
 
-    public Long getPhoneNumber() {
-        return phoneNumber;
+    public String getRickShawdescriptions() {
+        return rickShawdescriptions;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setRickShawdescriptions(String rickShawdescriptions) {
+        this.rickShawdescriptions = rickShawdescriptions;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getRickShawgender() {
+        return rickShawgender;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setRickShawgender(String rickShawgender) {
+        this.rickShawgender = rickShawgender;
     }
 }
 

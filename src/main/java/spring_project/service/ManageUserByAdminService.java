@@ -37,10 +37,17 @@ public class ManageUserByAdminService {
     // Cập nhật User
     public boolean updateUserById(Long id, User user) {
         User userUpdate = userRepository.findById(id).orElse(null);
-        if(userUpdate != null) {
-            userUpdate.setName(user.getName());
-            userUpdate.setEmail(user.getEmail());
-            userUpdate.setNumberphone(user.getNumberphone());
+        if (userUpdate != null) {
+            if (user.getName() != null) {
+                userUpdate.setName(user.getName());
+            }
+            if (user.getEmail() != null) {
+                userUpdate.setEmail(user.getEmail());
+            }
+            if (user.getNumberphone() != null) {
+                userUpdate.setNumberphone(user.getNumberphone());
+            }
+
             userRepository.save(userUpdate);
             return true;
         }

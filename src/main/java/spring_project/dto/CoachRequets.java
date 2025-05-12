@@ -2,7 +2,7 @@ package spring_project.dto;
 
 public class CoachRequets {
 
-    private Long CoachId;
+    private Long coachId;
     private Long licensePlateNumberCoach;
     private String coachName;
     private String url;
@@ -17,9 +17,14 @@ public class CoachRequets {
         this.coachName = coachName;
     }
 
-    public void setCoachId(Long coachId) {
-        CoachId = coachId;
+    public Long getCoachId() {
+        return coachId;
     }
+
+    public void setCoachId(Long coachId) {
+        this.coachId = coachId;
+    }
+
 
     public void setLicensePlateNumberCoach(Long licensePlateNumberCoach) {
         this.licensePlateNumberCoach = licensePlateNumberCoach;
@@ -35,10 +40,6 @@ public class CoachRequets {
 
     public void setPublicId(String publicId) {
         this.publicId = publicId;
-    }
-
-    public Long getCoachId() {
-        return CoachId;
     }
 
     public Long getLicensePlateNumberCoach() {

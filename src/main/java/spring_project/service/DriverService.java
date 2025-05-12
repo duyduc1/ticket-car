@@ -49,6 +49,7 @@ public class DriverService {
             drivers.setFullName(driverRequets.getFullName());
             drivers.setDescriptions(driverRequets.getDescriptions());
             drivers.setYearOfBirth(driverRequets.getYearOfBirth());
+            driverRepository.save(drivers);
             return dataDriver;
         } catch (IOException e) {
             throw new RuntimeException("Failed to upload file: " + e.getMessage(), e);

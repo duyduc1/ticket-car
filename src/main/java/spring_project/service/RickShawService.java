@@ -50,6 +50,7 @@ public class RickShawService {
             rickshaw.setFullName(rickShawRequets.getRickShawfullName());
             rickshaw.setDescriptions(rickShawRequets.getRickShawdescriptions());
             rickshaw.setYearOfBirth(rickShawRequets.getRickShawyearOfBirth());
+            rickShawRepository.save(rickshaw);
             return dataRickShaw;
         } catch (IOException e) {
             throw new RuntimeException(e);

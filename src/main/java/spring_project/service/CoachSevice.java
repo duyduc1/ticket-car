@@ -46,6 +46,7 @@ public class CoachSevice {
             coach.setPublicId((String) dataCoach.get("public_id"));
             coach.setCoachName(coachRequets.getCoachName());
             coach.setLicensePlateNumberCoach(coachRequets.getLicensePlateNumberCoach());
+            coachRepository.save(coach);
             return dataCoach;
         } catch (IOException e) {
             throw new RuntimeException("Failed to upload file: " + e.getMessage(), e);

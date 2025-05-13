@@ -23,7 +23,7 @@ public class TripCar {
     private String tripName;
     private LocalDate departureDate; // ngày khởi hành
     private LocalTime departureTime; // giờ khởi hành
-    private LocalTime departureEndTime; // giờ kết thucs chuyến xe
+    private LocalTime departureEndTime; // giờ kết thúc chuyến xe
     private String pickupPoint; // điểm đón
     private String payPonit; // điểm trả
     private Long seatNumber; // số ghế

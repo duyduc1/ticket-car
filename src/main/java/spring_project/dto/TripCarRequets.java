@@ -24,7 +24,6 @@ public class TripCarRequets {
     private Long driverId;
     private Long coachId;
     private Long rickshawId;
-    private DriverRequets driverRequest; // thông tin tài xế kèm theo
 
     private String licensePlateNumberCoach;
     private String coachName;

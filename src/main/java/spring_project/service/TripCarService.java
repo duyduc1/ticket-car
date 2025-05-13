@@ -1,6 +1,7 @@
 package spring_project.service;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring_project.dto.TripCarRequets;
@@ -64,29 +65,53 @@ public class TripCarService {
         return tripCarRepository.save(newTripCar);
     }
 
-    public TripCar updateTripCar(Long tripCarId, TripCarRequets tripCarRequets) {
-        TripCar tripCar = tripCarRepository.findById(tripCarId).orElse(null);
-        tripCar.setTripName(tripCarRequets.getTripName());
-        tripCar.setEmptySeatNumber(tripCarRequets.getEmptySeatNumber());
-        tripCar.setPriceSeatNumber(tripCarRequets.getPriceSeatNumber());
-        tripCar.setSeatNumber(tripCarRequets.getSeatNumber());
-        tripCar.setPayPonit(tripCarRequets.getPayPonit());
-        tripCar.setPickupPoint(tripCarRequets.getPickupPoint());
-        tripCar.setDepartureTime(tripCarRequets.getDepartureTime());
-        tripCar.setDepartureEndTime(tripCarRequets.getDepartureEndTime());
-        tripCar.setDepartureDate(tripCarRequets.getDepartureDate());
-        Driver driver = driverService.findDriverById(tripCarRequets.getDriverId());
-        Coach coach = coachSevice.findCoachById(tripCarRequets.getCoachId());
-        Rickshaw rickshaw = rickShawService.getRickShaw(tripCarRequets.getRickshawId());
-        tripCar.setDriver(driver);
-        tripCar.setCoach(coach);
-        tripCar.setRickshaw(rickshaw);
-        return tripCarRepository.save(tripCar);
+    public TripCar updateTripCar(Long tripCarId, TripCarRequets tripCar) {
+        TripCar updatetripCar = tripCarRepository.findById(tripCarId).orElse(null);
+        if (tripCar != null) {
+            if (tripCar.getTripName() != null) {
+                updatetripCar.setTripName(tripCar.getTripName());
+            }
+
+            if (tripCar.getEmptySeatNumber() != null) {
+                updatetripCar.setEmptySeatNumber(tripCar.getEmptySeatNumber());
+            }
+
+            if (tripCar.getPriceSeatNumber() != null) {
+                updatetripCar.setPriceSeatNumber(tripCar.getPriceSeatNumber());
+            }
+
+            if (tripCar.getSeatNumber() != null) {
+                updatetripCar.setSeatNumber(tripCar.getSeatNumber());
+            }
+
+            if (tripCar.getPayPonit() != null) {
+                updatetripCar.setPayPonit(tripCar.getPayPonit());
+            }
+
+            if (tripCar.getPickupPoint() != null) {
+                updatetripCar.setPickupPoint(tripCar.getPickupPoint());
+            }
+
+            if (tripCar.getDepartureTime() != null) {
+                updatetripCar.setDepartureTime(tripCar.getDepartureTime());
+            }
+
+            if (tripCar.getDepartureEndTime() != null) {
+                updatetripCar.setDepartureEndTime(tripCar.getDepartureEndTime());
+            }
+
+            if (tripCar.getDepartureDate() != null) {
+                updatetripCar.setDepartureDate(tripCar.getDepartureDate());
+            }
+        }
+        return tripCarRepository.save(updatetripCar);
     }
 
-    public boolean deleteTripCar(Long tripCarId) {
-        TripCar tripCar = tripCarRepository.findById(tripCarId).orElse(null);
+    @Transactional
+    public void deleteTripCar(Long tripCarId) {
+        TripCar tripCar = tripCarRepository.findById(tripCarId)
+                .orElseThrow(() -> new EntityNotFoundException("TripCar not found with id: " + tripCarId));
         tripCarRepository.delete(tripCar);
-        return true;
     }
+
 }

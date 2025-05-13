@@ -22,7 +22,7 @@ public class TripCarController {
         return new ResponseEntity<>(listTripCars, HttpStatus.OK);
     }
 
-    @GetMapping("/useradmin-all-tripccar/{tripCarId}")
+    @GetMapping("/useradmin-all-tripcar/{tripCarId}")
     public ResponseEntity<TripCarRequets> getTripCarById(@PathVariable Long tripCarId) {
         TripCarRequets tripCarById = tripCarService.getTripCarById(tripCarId);
         return new ResponseEntity<>(tripCarById, HttpStatus.OK);
@@ -40,8 +40,8 @@ public class TripCarController {
         return new ResponseEntity<>(tripCarRequets, HttpStatus.OK);
     }
 
-    @DeleteMapping("/api-tripcar/delete-tripcar/{tripCarId}")
-    public ResponseEntity<TripCarRequets> deleteTripCarByAdmin(@PathVariable Long tripCarId) {
+    @DeleteMapping("/api-tripcar/{tripCarId}")
+    public ResponseEntity<String> deleteTripCarByAdmin(@PathVariable Long tripCarId) {
         tripCarService.deleteTripCar(tripCarId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

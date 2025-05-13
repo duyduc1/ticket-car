@@ -1,5 +1,6 @@
 package spring_project.controller;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,6 @@ public class TripCarController {
     @DeleteMapping("/api-tripcar/{tripCarId}")
     public ResponseEntity<String> deleteTripCarByAdmin(@PathVariable Long tripCarId) {
         tripCarService.deleteTripCar(tripCarId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Trip Car deleted", HttpStatus.OK);
     }
 }

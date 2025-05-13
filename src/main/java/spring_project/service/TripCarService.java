@@ -108,10 +108,19 @@ public class TripCarService {
     }
 
     @Transactional
-    public void deleteTripCar(Long tripCarId) {
-        TripCar tripCar = tripCarRepository.findById(tripCarId)
-                .orElseThrow(() -> new EntityNotFoundException("TripCar not found with id: " + tripCarId));
-        tripCarRepository.delete(tripCar);
+    public boolean deleteTripCar(Long tripCarId) {
+        TripCar deleteTripCar = tripCarRepository.findById(tripCarId).orElse(null);
+        if (deleteTripCar == null) {
+            return false;
+        }
+
+        deleteTripCar.setDriver(null);
+        deleteTripCar.setCoach(null);
+        deleteTripCar.setRickshaw(null);
+        System.out.println("Deleting TripCar with id: " + tripCarId + " " + deleteTripCar); // ✅ Dòng debug
+        tripCarRepository.delete(deleteTripCar);
+        System.out.println("Deleting TripCar with id: " + tripCarId + " " + deleteTripCar); // ✅ Dòng debug
+        return true;
     }
 
 }

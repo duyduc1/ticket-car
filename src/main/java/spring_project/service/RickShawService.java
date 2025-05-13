@@ -44,7 +44,7 @@ public class RickShawService {
             Map<String , Object> dataRickShaw = this.cloudinary.uploader().upload(file.getBytes(),Map.of());
             Rickshaw rickshaw = new Rickshaw();
             rickshaw.setUrl((String) dataRickShaw.get("url"));
-            rickshaw.setPublicId((String) dataRickShaw.get("publicId"));
+            rickshaw.setPublicId((String) dataRickShaw.get("public_id"));
             rickshaw.setGender(rickShawRequets.getRickShawgender());
             rickshaw.setPhoneNumber(rickShawRequets.getRickShawphoneNumber());
             rickshaw.setFullName(rickShawRequets.getRickShawfullName());
@@ -59,11 +59,11 @@ public class RickShawService {
 
     public void updateRickShaw(Long rickshawId , MultipartFile file , RickShawRequets rickShawRequets) throws IOException {
         Rickshaw rickshaw = rickShawRepository.findById(rickshawId).orElse(null);
-        if (rickshaw != null && !file.isEmpty()) {
+        if (file != null && !file.isEmpty()) {
             cloudinary.uploader().destroy(rickshaw.getPublicId() , ObjectUtils.emptyMap());
             Map<String , Object> newDataRickShaw = this.cloudinary.uploader().upload(file.getBytes(),Map.of());
             rickshaw.setUrl((String) newDataRickShaw.get("url"));
-            rickshaw.setPublicId((String) newDataRickShaw.get("publicId"));
+            rickshaw.setPublicId((String) newDataRickShaw.get("public_id"));
         }
 
         if (rickShawRequets.getRickShawfullName() != null) {

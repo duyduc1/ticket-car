@@ -58,17 +58,17 @@ public class RickShawController {
         try {
             RickShawRequets rickShawRequets = new RickShawRequets(rickShawfullName , rickShawphoneNumber , rickShawyearOfBirth , rickShawdescriptions , rickShawgender);
             rickShawService.updateRickShaw(rickshawId , file , rickShawRequets);
-            return new ResponseEntity<>(Map.of("error", HttpStatus.NO_CONTENT), HttpStatus.OK);
+            return new ResponseEntity<>(Map.of("message", "Driver updated susscessfully"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(Map.of("error", e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @DeleteMapping("/apt-rickshaw/delete-rickshaw/{rickshawId}")
+    @DeleteMapping("/api-rickshaw/delete-rickshaw/{rickshawId}")
     public ResponseEntity<Map<String,Object>> deleteRickShaw(@PathVariable Long rickshawId) {
         try {
             rickShawService.deleteRickShaw(rickshawId);
-            return new ResponseEntity<>(Map.of("error", HttpStatus.NO_CONTENT), HttpStatus.OK);
+            return new ResponseEntity<>(Map.of("message", "Delete RickShaw successfully"), HttpStatus.OK);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (RuntimeException e) {

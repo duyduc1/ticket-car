@@ -75,6 +75,12 @@ public class TripCarService {
         tripCar.setDepartureTime(tripCarRequets.getDepartureTime());
         tripCar.setDepartureEndTime(tripCarRequets.getDepartureEndTime());
         tripCar.setDepartureDate(tripCarRequets.getDepartureDate());
+        Driver driver = driverService.findDriverById(tripCarRequets.getDriverId());
+        Coach coach = coachSevice.findCoachById(tripCarRequets.getCoachId());
+        Rickshaw rickshaw = rickShawService.getRickShaw(tripCarRequets.getRickshawId());
+        tripCar.setDriver(driver);
+        tripCar.setCoach(coach);
+        tripCar.setRickshaw(rickshaw);
         return tripCarRepository.save(tripCar);
     }
 

@@ -33,9 +33,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/admin/**" , "/api/manager-user/**" , "/api-driver/**" , "/api-coach/**" , "/api-rickshaw/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/**" , "/api/manager-user/**" , "/api-driver/**" , "/api-coach/**" , "/api-rickshaw/**" , "/api-tripcar/**").hasAuthority("ADMIN")
                         .requestMatchers("/user/**").hasAuthority("USER")
-                        .requestMatchers("/adminuser/**" , "/useradmin-all-driver/**" , "/useradmin-all-coach/**" , "/useradmin-all-rickshaw/**" ).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/adminuser/**" , "/useradmin-all-driver/**" , "/useradmin-all-coach/**" , "/useradmin-all-rickshaw/**" , "/useradmin-all-tripcar/**" ).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

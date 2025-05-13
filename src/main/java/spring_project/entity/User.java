@@ -22,11 +22,15 @@ public class User implements UserDetails {
     private String name;
     private Integer numberphone;
     private String role;
-
-
     private String resetToken;
-
     private LocalDateTime tokenExpirationDate;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Ticket> tickets;
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
 
     public String getResetToken() {
         return resetToken;

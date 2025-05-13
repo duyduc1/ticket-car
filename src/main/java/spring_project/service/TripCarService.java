@@ -13,6 +13,7 @@ import spring_project.mapper.TripCarMapper;
 import spring_project.repository.TripCarRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -113,4 +114,8 @@ public class TripCarService {
         return true;
     }
 
+    public TripCar findTripCarById(Long tripCarId) {
+        Optional<TripCar> tripCar = tripCarRepository.findById(tripCarId);
+        return tripCar.orElse(null);
+    }
 }

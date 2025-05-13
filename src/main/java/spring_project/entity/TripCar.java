@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Trip_Car")
@@ -44,5 +45,12 @@ public class TripCar {
     @JoinColumn(name = "rickshaw_id" , referencedColumnName = "rickshawId")
     @JsonIgnore
     private Rickshaw rickshaw;
+
+    @OneToMany(mappedBy = "tripCar" , cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Ticket> tickets;
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
 
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Table(name = "driver")
 @Entity
 @Data
@@ -24,11 +26,10 @@ public class Driver {
     private String url;
     private String publicId;
 
-    @OneToOne(mappedBy = "driver" , cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private TripCar tripCar;
+    @OneToMany(mappedBy = "driver" , cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<TripCar> tripCars;
 
-    public TripCar getTripCar() {
-        return tripCar;
+    public List<TripCar> getTripCars() {
+        return tripCars;
     }
 }

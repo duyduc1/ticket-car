@@ -107,19 +107,9 @@ public class TripCarService {
         return tripCarRepository.save(updatetripCar);
     }
 
-    @Transactional
     public boolean deleteTripCar(Long tripCarId) {
-        TripCar deleteTripCar = tripCarRepository.findById(tripCarId).orElse(null);
-        if (deleteTripCar == null) {
-            return false;
-        }
-
-        deleteTripCar.setDriver(null);
-        deleteTripCar.setCoach(null);
-        deleteTripCar.setRickshaw(null);
-        System.out.println("Deleting TripCar with id: " + tripCarId + " " + deleteTripCar); // ✅ Dòng debug
-        tripCarRepository.delete(deleteTripCar);
-        System.out.println("Deleting TripCar with id: " + tripCarId + " " + deleteTripCar); // ✅ Dòng debug
+        TripCar tripCar = tripCarRepository.findById(tripCarId).orElse(null);
+        tripCarRepository.delete(tripCar);
         return true;
     }
 

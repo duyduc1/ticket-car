@@ -17,19 +17,19 @@ import java.util.Map;
 public class RickShawController {
     private final RickShawService rickShawService;
 
-    @GetMapping("/useradmin-all-rickshaw")
+    @GetMapping("/api/useradmin-all-rickshaw")
     public ResponseEntity<List<RickShawRequets>> getAllRickShaws() {
         List<RickShawRequets> allRickShaws = rickShawService.getAllRickShaws();
         return new ResponseEntity<>(allRickShaws, HttpStatus.OK);
     }
 
-    @GetMapping("/useradmin-all-rickshaw/{rickshawId}")
+    @GetMapping("/api/useradmin-all-rickshaw/{rickshawId}")
     public ResponseEntity<RickShawRequets> getRickShawById(@PathVariable Long rickshawId) {
         RickShawRequets rickShawsById = rickShawService.getRickShawById(rickshawId);
         return new ResponseEntity<>(rickShawsById, HttpStatus.OK);
     }
 
-    @PostMapping("/api-rickshaw/create-rickshaw")
+    @PostMapping("/api/api-rickshaw/create-rickshaw")
     public ResponseEntity<Map<String,Object>> createRickShaw(
             @RequestParam(value = "image" , required = false) MultipartFile file,
             @RequestParam(value = "rickShawfullName", required = false) String rickShawfullName,
@@ -46,7 +46,7 @@ public class RickShawController {
         }
     }
 
-    @PutMapping("/api-rickshaw/update-rickshaw/{rickshawId}")
+    @PutMapping("/api/api-rickshaw/update-rickshaw/{rickshawId}")
     public ResponseEntity<Map<String,Object>> updateRickShaw(
             @PathVariable Long rickshawId,
             @RequestParam(value = "image" , required = false) MultipartFile file,
@@ -64,7 +64,7 @@ public class RickShawController {
         }
     }
 
-    @DeleteMapping("/api-rickshaw/delete-rickshaw/{rickshawId}")
+    @DeleteMapping("/api/api-rickshaw/delete-rickshaw/{rickshawId}")
     public ResponseEntity<Map<String,Object>> deleteRickShaw(@PathVariable Long rickshawId) {
         try {
             rickShawService.deleteRickShaw(rickshawId);

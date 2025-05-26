@@ -18,19 +18,19 @@ import java.util.Map;
 public class DriverController {
     private final DriverService driverService;
 
-    @GetMapping("/useradmin-all-driver")
+    @GetMapping("/api/useradmin-all-driver")
     public ResponseEntity<List<DriverRequets>> getAllDrivers() {
         List<DriverRequets> allDrivers = driverService.getListDrivers();
         return new ResponseEntity<>(allDrivers, HttpStatus.OK);
     }
 
-    @GetMapping("/useradmin-all-driver/{driverId}")
+    @GetMapping("/api/useradmin-all-driver/{driverId}")
     public ResponseEntity<DriverRequets> getDriverById(@PathVariable Long driverId) {
         DriverRequets driverById = driverService.getDriverById(driverId);
         return new ResponseEntity<>(driverById, HttpStatus.OK);
     }
 
-    @PostMapping("/api-driver/create-driver")
+    @PostMapping("/api/api-driver/create-driver")
     public ResponseEntity<Map<String,Object>> createFood(
             @RequestParam(value = "image" , required = false) MultipartFile file,
             @RequestParam(value = "fullName" , required = false) String fullName,
@@ -47,7 +47,7 @@ public class DriverController {
         }
     }
 
-    @PutMapping("/api-driver/update-driver/{driverId}")
+    @PutMapping("/api/api-driver/update-driver/{driverId}")
     public ResponseEntity<Map<String,Object>> updateDriver(
             @PathVariable Long driverId,
             @RequestParam(value = "image" , required = false) MultipartFile file,
@@ -69,7 +69,7 @@ public class DriverController {
         }
     }
 
-    @DeleteMapping("/api-driver/delete-driver/{driverId}")
+    @DeleteMapping("/api/api-driver/delete-driver/{driverId}")
     public ResponseEntity<Map<String,Object>> deleteDriver(@PathVariable Long driverId) {
         try {
             driverService.deleteDriver(driverId);

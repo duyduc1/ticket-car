@@ -18,19 +18,19 @@
 
         private final CoachSevice coachSevice;
 
-        @GetMapping("/useradmin-all-coach")
+        @GetMapping("/api/useradmin-all-coach")
         public ResponseEntity<List<CoachRequets>> getAllCoach() {
             List<CoachRequets> allCoachs = coachSevice.getAllCoaches();
             return new ResponseEntity<>(allCoachs, HttpStatus.OK);
         }
 
-        @GetMapping("/useradmin-all-coach/{coachId}")
+        @GetMapping("/api/useradmin-all-coach/{coachId}")
         public ResponseEntity<CoachRequets> getCoachById(@PathVariable Long coachId) {
             CoachRequets coachById = coachSevice.getCoacheById(coachId);
             return new ResponseEntity<>(coachById, HttpStatus.OK);
         }
 
-        @PostMapping("/api-coach/create-coach")
+        @PostMapping("/api/api-coach/create-coach")
         public ResponseEntity<Map<String , Object>> createCoach(
                 @RequestParam(value = "image" , required = false) MultipartFile file,
                 @RequestParam(value = "coachName" , required = false) String coachName,
@@ -44,7 +44,7 @@
             }
         }
 
-        @PutMapping("/api-coach/update-coach/{coachId}")
+        @PutMapping("/api/api-coach/update-coach/{coachId}")
         public ResponseEntity<Map<String,Object>> updateCoach(
                 @PathVariable Long coachId,
                 @RequestParam(value = "image" , required = false) MultipartFile file,
@@ -63,7 +63,7 @@
             }
         }
 
-        @DeleteMapping("/api-coach/delete-coach/{coachId}")
+        @DeleteMapping("/api/api-coach/delete-coach/{coachId}")
         public ResponseEntity<Map<String,Object>> deleteCoach(@PathVariable Long coachId) {
             try {
                 coachSevice.deleteCoach(coachId);

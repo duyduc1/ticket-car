@@ -32,11 +32,11 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/auth/**" , "/useradmin-all-tripcar/**").permitAll()
-                        .requestMatchers("/api-tripcar/payment").hasAnyAuthority("USER", "ADMIN")
-                        .requestMatchers("/admin/**" , "/api/manager-user/**" , "/api-driver/**" , "/api-coach/**" , "/api-rickshaw/**" , "/api-tripcar/**").hasAuthority("ADMIN")
-                        .requestMatchers("/user/**").hasAuthority("USER")
-                        .requestMatchers("/adminuser/**" , "/useradmin-all-driver/**" , "/useradmin-all-coach/**" , "/useradmin-all-rickshaw/**" , "/useradmin-all-tripcar/**" ).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/api/auth/**" , "/api/useradmin-all-tripcar/**").permitAll()
+                        .requestMatchers("/api/api-tripcar/payment").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/api/admin/**" , "/api/manager-user/**" , "/api/api-driver/**" , "/api/api-coach/**" , "/api/api-rickshaw/**" , "/api-tripcar/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/user/**").hasAuthority("USER")
+                        .requestMatchers("/api/adminuser/**" , "/api/useradmin-all-driver/**" , "/api/useradmin-all-coach/**" , "/api/useradmin-all-rickshaw/**" , "/api/useradmin-all-tripcar/**" ).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

@@ -32,7 +32,7 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/**" , "/useradmin-all-tripcar/**").permitAll()
                         .requestMatchers("/api-tripcar/payment").hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers("/admin/**" , "/api/manager-user/**" , "/api-driver/**" , "/api-coach/**" , "/api-rickshaw/**" , "/api-tripcar/**").hasAuthority("ADMIN")
                         .requestMatchers("/user/**").hasAuthority("USER")

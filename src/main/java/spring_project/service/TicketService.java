@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring_project.dto.TicketRequests;
 import spring_project.entity.Ticket;
+import spring_project.entity.TicketStatus;
 import spring_project.entity.TripCar;
 import spring_project.entity.User;
 import spring_project.mapper.TicketMapper;
@@ -40,9 +41,17 @@ public class TicketService {
         return ticketMapper.toDto(ticket);
     }
 
+    public List<TicketRequests> getAllTickets() {
+        List<Ticket> tickets = ticketRepository.findAll();
+        return tickets.stream()
+                .map(ticketMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     public Ticket createTicket(TicketRequests ticketRequests) {
         Ticket newTicket = new Ticket();
         newTicket.setSeatNumber(ticketRequests.getSeatNumber());
+        newTicket.setStatus(TicketStatus.PENDING);
         User user = manageUserByAdminService.findById(ticketRequests.getId());
         TripCar tripCar = tripCarService.findTripCarById(ticketRequests.getTripCarId());
         newTicket.setUser(user);
@@ -50,8 +59,23 @@ public class TicketService {
         return ticketRepository.save(newTicket);
     }
 
+    public Ticket updateTicketStatus(Long ticketId, TicketStatus status) {
+        Optional<Ticket> ticketOpt = ticketRepository.findById(ticketId);
+        if (ticketOpt.isPresent()) {
+            Ticket ticket = ticketOpt.get();
+            ticket.setStatus(status);
+            return ticketRepository.save(ticket);
+        }
+        return null;
+    }
+
     public Ticket deleteTicketById(Long ticketId) {
         Optional<Ticket> ticket = ticketRepository.findById(ticketId);
-        return ticket.orElse(null);
+        if (ticket.isPresent()) {
+            ticketRepository.deleteById(ticketId);
+            return ticket.get();
+        }
+        return null;
     }
+
 }

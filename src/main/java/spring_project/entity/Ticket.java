@@ -18,6 +18,9 @@ public class Ticket {
     private Long tickerId;
     private String seatNumber;
 
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tripcar_id" , referencedColumnName = "tripCarId")
     @JsonIgnore

@@ -3,6 +3,7 @@ package spring_project.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import spring_project.entity.TicketStatus;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,6 +14,7 @@ import java.time.LocalTime;
 public class TicketRequests {
     private Long tickerId;
     private String seatNumber;
+    private TicketStatus status;
 
     private Long tripCarId;
     private String tripName; // Tên chuyến

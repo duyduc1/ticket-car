@@ -18,19 +18,19 @@
 
         private final CoachSevice coachSevice;
 
-        @GetMapping("/api/useradmin-all-coach")
+        @GetMapping("/api/useradmin-all-coach") // Cần TOKEN ADMIN và USER để có thể coi
         public ResponseEntity<List<CoachRequets>> getAllCoach() {
             List<CoachRequets> allCoachs = coachSevice.getAllCoaches();
             return new ResponseEntity<>(allCoachs, HttpStatus.OK);
         }
 
-        @GetMapping("/api/useradmin-all-coach/{coachId}")
+        @GetMapping("/api/useradmin-all-coach/{coachId}") // Cần TOKEN ADMIN và USER để có thể coi
         public ResponseEntity<CoachRequets> getCoachById(@PathVariable Long coachId) {
             CoachRequets coachById = coachSevice.getCoacheById(coachId);
             return new ResponseEntity<>(coachById, HttpStatus.OK);
         }
 
-        @PostMapping("/api/api-coach/create-coach")
+        @PostMapping("/api/api-coach/create-coach") // Cần TOKEN ADMIN để tạo
         public ResponseEntity<Map<String , Object>> createCoach(
                 @RequestParam(value = "image" , required = false) MultipartFile file,
                 @RequestParam(value = "coachName" , required = false) String coachName,
@@ -44,7 +44,7 @@
             }
         }
 
-        @PutMapping("/api/api-coach/update-coach/{coachId}")
+        @PutMapping("/api/api-coach/update-coach/{coachId}") // Cần TOKEN ADMIN để cập nhật
         public ResponseEntity<Map<String,Object>> updateCoach(
                 @PathVariable Long coachId,
                 @RequestParam(value = "image" , required = false) MultipartFile file,
@@ -63,7 +63,7 @@
             }
         }
 
-        @DeleteMapping("/api/api-coach/delete-coach/{coachId}")
+        @DeleteMapping("/api/api-coach/delete-coach/{coachId}") // Cần TOKEN ADMIN để xoá
         public ResponseEntity<Map<String,Object>> deleteCoach(@PathVariable Long coachId) {
             try {
                 coachSevice.deleteCoach(coachId);

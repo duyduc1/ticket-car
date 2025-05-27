@@ -24,37 +24,37 @@ public class TripCarController {
     @Autowired
     private EmailService emailService;
 
-    @GetMapping("/api/useradmin-all-tripcar")
+    @GetMapping("/api/useradmin-all-tripcar") // Có thể xem được thông tin các chuyến mà không cần token
     public ResponseEntity<List<TripCarRequets>> getAllTripCar() {
         List<TripCarRequets> listTripCars = tripCarService.getAllTripCars();
         return new ResponseEntity<>(listTripCars, HttpStatus.OK);
     }
 
-    @GetMapping("/api/useradmin-all-tripcar/{tripCarId}")
+    @GetMapping("/api/useradmin-all-tripcar/{tripCarId}") // Có thể xem được thông tin các chuyến mà không cần token
     public ResponseEntity<TripCarRequets> getTripCarById(@PathVariable Long tripCarId) {
         TripCarRequets tripCarById = tripCarService.getTripCarById(tripCarId);
         return new ResponseEntity<>(tripCarById, HttpStatus.OK);
     }
 
-    @PostMapping("/api/api-tripcar/create-tripcar")
+    @PostMapping("/api/api-tripcar/create-tripcar") // Chỉ có token admin mới có thể tạo được chuyến xe
     public ResponseEntity<TripCarRequets> createTripCarByAdmin(@RequestBody TripCarRequets tripCarRequets) {
         TripCar tripCar = tripCarService.createTripCar(tripCarRequets);
         return new ResponseEntity<>(tripCarRequets, HttpStatus.OK);
     }
 
-    @PutMapping("/api/api-tripcar/update-tripcar/{tripCarId}")
+    @PutMapping("/api/api-tripcar/update-tripcar/{tripCarId}") // Chỉ có token admin mới có thể cập nhật được chuyến xe
      public ResponseEntity<TripCarRequets> updateTripCarByAdmin(@PathVariable Long tripCarId, @RequestBody TripCarRequets tripCarRequets) {
         TripCar tripCar = tripCarService.updateTripCar(tripCarId, tripCarRequets);
         return new ResponseEntity<>(tripCarRequets, HttpStatus.OK);
     }
 
-    @DeleteMapping("/api/api-tripcar/{tripCarId}")
+    @DeleteMapping("/api/api-tripcar/{tripCarId}") // Chỉ có token admin mới có thể xoá được chuyến xe
     public ResponseEntity<String> deleteTripCarByAdmin(@PathVariable Long tripCarId) {
         tripCarService.deleteTripCar(tripCarId);
         return new ResponseEntity<>("Trip Car deleted", HttpStatus.OK);
     }
 
-    @PostMapping("/api/send-email/payment")
+    @PostMapping("/api/send-email/payment") // Có thể gửi gmail khi có token của USER và ADMIN
     public ResponseEntity<String> paymentAndSendMail(@RequestBody PaymentRequest paymentRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

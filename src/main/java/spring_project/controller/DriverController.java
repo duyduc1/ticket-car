@@ -18,19 +18,19 @@ import java.util.Map;
 public class DriverController {
     private final DriverService driverService;
 
-    @GetMapping("/api/useradmin-all-driver")
+    @GetMapping("/api/useradmin-all-driver") // Cần TOKEN ADMIN và USER để có thể xem
     public ResponseEntity<List<DriverRequets>> getAllDrivers() {
         List<DriverRequets> allDrivers = driverService.getListDrivers();
         return new ResponseEntity<>(allDrivers, HttpStatus.OK);
     }
 
-    @GetMapping("/api/useradmin-all-driver/{driverId}")
+    @GetMapping("/api/useradmin-all-driver/{driverId}") // Cần TOKEN ADMIN và USER để có thể xem
     public ResponseEntity<DriverRequets> getDriverById(@PathVariable Long driverId) {
         DriverRequets driverById = driverService.getDriverById(driverId);
         return new ResponseEntity<>(driverById, HttpStatus.OK);
     }
 
-    @PostMapping("/api/api-driver/create-driver")
+    @PostMapping("/api/api-driver/create-driver") // Chỉ có TOKEN ADMIN mới có thể tạo
     public ResponseEntity<Map<String,Object>> createFood(
             @RequestParam(value = "image" , required = false) MultipartFile file,
             @RequestParam(value = "fullName" , required = false) String fullName,
@@ -47,7 +47,7 @@ public class DriverController {
         }
     }
 
-    @PutMapping("/api/api-driver/update-driver/{driverId}")
+    @PutMapping("/api/api-driver/update-driver/{driverId}") // chỉ có TOKEN ADMIN mới có thể cập nhật
     public ResponseEntity<Map<String,Object>> updateDriver(
             @PathVariable Long driverId,
             @RequestParam(value = "image" , required = false) MultipartFile file,
@@ -69,7 +69,7 @@ public class DriverController {
         }
     }
 
-    @DeleteMapping("/api/api-driver/delete-driver/{driverId}")
+    @DeleteMapping("/api/api-driver/delete-driver/{driverId}") // Chỉ có token ADMIN mới có thể xoá
     public ResponseEntity<Map<String,Object>> deleteDriver(@PathVariable Long driverId) {
         try {
             driverService.deleteDriver(driverId);

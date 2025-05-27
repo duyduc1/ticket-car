@@ -11,7 +11,7 @@ import spring_project.service.ManageUserByAdminService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/manager-user")
+@RequestMapping("/api/manager-user") // Toàn bộ API này dùng cho TOKEN ADMIN
 public class ManagerUserByAdminController {
 
     @Autowired

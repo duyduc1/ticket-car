@@ -54,6 +54,13 @@ public class TicketService {
         newTicket.setStatus(TicketStatus.PENDING);
         User user = manageUserByAdminService.findById(ticketRequests.getId());
         TripCar tripCar = tripCarService.findTripCarById(ticketRequests.getTripCarId());
+
+        if (tripCar.getEmptySeatNumber() <= 0) {
+            throw new RuntimeException("Chuyến xe đã hết  ghế trống");
+        }
+
+        tripCar.setEmptySeatNumber(tripCar.getEmptySeatNumber() - 1);
+        tripCarService.save(tripCar);
         newTicket.setUser(user);
         newTicket.setTripCar(tripCar);
         return ticketRepository.save(newTicket);

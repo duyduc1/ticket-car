@@ -118,4 +118,9 @@ public class TripCarService {
         Optional<TripCar> tripCar = tripCarRepository.findById(tripCarId);
         return tripCar.orElse(null);
     }
+
+    public TripCar save(TripCar tripCar) {
+        return tripCarRepository.save(tripCar);
+    }
+
 }

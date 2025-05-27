@@ -28,5 +28,6 @@ public class Ticket {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id" , referencedColumnName = "id")
+    @JsonIgnore
     private User user;
 }

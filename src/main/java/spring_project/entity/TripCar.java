@@ -28,7 +28,7 @@ public class TripCar {
     private String pickupPoint; // điểm đón
     private String payPonit; // điểm trả
     private Long seatNumber; // số ghế
-    private Long emptySeatNumber; // số ghế trống
+    private Long emptySeatNumber; // số ghế còn lại
     private Long priceSeatNumber; // giá ghế
 
     @ManyToOne(fetch = FetchType.EAGER)

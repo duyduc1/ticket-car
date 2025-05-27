@@ -33,9 +33,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/api/auth/**" , "/api/useradmin-all-tripcar/**").permitAll()
-                        .requestMatchers("/api/admin/**" , "/api/manager-user/**" ,"/api/admin-ticket/**", "/api/api-driver/**" , "/api/api-coach/**" , "/api/api-rickshaw/**" ).hasAuthority("ADMIN")
+                        .requestMatchers("/api/admin/**" , "/api/manager-user/**" ,"/api/admin-ticket/**", "/api/api-driver/**" , "/api/api-coach/**" , "/api/api-rickshaw/**" , "/api/api-tripcar/**" ).hasAuthority("ADMIN")
                         .requestMatchers("/api/user/**").hasAuthority("USER")
-                        .requestMatchers("/api/adminuser/**" , "/api/useradmin-all-driver/**","/api/useradmin-all-tripcar/**" ,"/api/user-ticket/**" , "/api/useradmin-all-coach/**" , "/api/useradmin-all-rickshaw/**" , "/api/useradmin-all-tripcar/**" , "/api/api-tripcar/**" ).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/api/adminuser/**" , "/api/useradmin-all-driver/**" ,"/api/user-ticket/**" , "/api/useradmin-all-coach/**" , "/api/send-email/**","/api/useradmin-all-rickshaw/**" ).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

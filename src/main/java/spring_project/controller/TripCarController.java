@@ -54,7 +54,7 @@ public class TripCarController {
         return new ResponseEntity<>("Trip Car deleted", HttpStatus.OK);
     }
 
-    @PostMapping("/api/api-tripcar/payment")
+    @PostMapping("/api/send-email/payment")
     public ResponseEntity<String> paymentAndSendMail(@RequestBody PaymentRequest paymentRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

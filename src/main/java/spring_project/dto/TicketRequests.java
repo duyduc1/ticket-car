@@ -28,4 +28,5 @@ public class TicketRequests {
     private String email;
     private Integer numberphone;
     private String username;
+    private String name;
 }

@@ -43,7 +43,7 @@ public class TicketController {
         return ResponseEntity.ok(createdTicket);
     }
 
-    @PutMapping("/api/admin-ticket/{ticketId}") // Chỉ có TOKEN ADMIN mới có thể cập nhật được trạng thái ghế
+    @PutMapping("/api/update-status-ticket/{ticketId}") // Chỉ có TOKEN ADMIN mới có thể cập nhật được trạng thái ghế
     public ResponseEntity<Ticket> updateTicketStatus(
             @PathVariable Long ticketId,
             @RequestParam TicketStatus status) {

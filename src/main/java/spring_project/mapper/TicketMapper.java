@@ -20,6 +20,7 @@ public interface TicketMapper {
     @Mapping(source = "user.email" , target = "email")
     @Mapping(source = "user.numberphone" , target = "numberphone")
     @Mapping(source = "user.username" , target = "username")
+    @Mapping(source = "user.name" , target = "name")
     TicketRequests toDto(Ticket ticket);
 
     @Mapping(source = "id" , target = "user.id")

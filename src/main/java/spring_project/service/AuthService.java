@@ -10,12 +10,6 @@ import org.springframework.stereotype.Service;
 import spring_project.dto.UserDTO;
 import spring_project.entity.User;
 import spring_project.repository.UserRepository;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-
-import java.util.Collections;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -132,94 +126,4 @@ public class AuthService {
         user.setTokenExpirationDate(null);
         userRepository.save(user);
     }
-
-    // signup and singin with google
-    public UserDTO googleSignUp(String credential) {
-        UserDTO response = new UserDTO();
-        try {
-            var transport = GoogleNetHttpTransport.newTrustedTransport();
-            var jsonFactory = JacksonFactory.getDefaultInstance();
-
-            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                    .setAudience(Collections
-                            .singletonList("475515681122-86685f4mdvcf1m3okno0imobsvmb09p2.apps.googleusercontent.com"))
-                    .build();
-
-            GoogleIdToken idToken = verifier.verify(credential);
-            if (idToken != null) {
-                GoogleIdToken.Payload payload = idToken.getPayload();
-                String email = payload.getEmail();
-                String name = (String) payload.get("name");
-
-                if (userRepository.findByEmail(email).isPresent()) {
-                    response.setStatusCode(409);
-                    response.setError("User with this email already exists. Please sign in.");
-                    return response;
-                }
-
-                User newUser = new User();
-                newUser.setEmail(email);
-                newUser.setName(name);
-                newUser.setRole("USER");
-                newUser.setPassword(null); // hoặc mã hóa 1 chuỗi ngẫu nhiên
-                User savedUser = userRepository.save(newUser);
-
-                response.setUser(savedUser);
-                response.setStatusCode(200);
-                response.setMessage("Google Sign Up thành công");
-            } else {
-                response.setStatusCode(401);
-                response.setError("Token Google không hợp lệ");
-            }
-        } catch (Exception e) {
-            response.setStatusCode(500);
-            response.setError("Lỗi server: " + e.getMessage());
-        }
-        return response;
-    }
-
-    public UserDTO googleSignIn(String credential) {
-        UserDTO response = new UserDTO();
-        try {
-            var transport = GoogleNetHttpTransport.newTrustedTransport();
-            var jsonFactory = JacksonFactory.getDefaultInstance();
-
-            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                    .setAudience(Collections
-                            .singletonList("475515681122-86685f4mdvcf1m3okno0imobsvmb09p2.apps.googleusercontent.com"))
-                    .build();
-
-            GoogleIdToken idToken = verifier.verify(credential);
-            if (idToken == null) {
-                response.setStatusCode(401);
-                response.setError("Token Google không hợp lệ");
-                return response;
-            }
-
-            GoogleIdToken.Payload payload = idToken.getPayload();
-            String email = payload.getEmail();
-
-            User user = userRepository.findByEmail(email).orElse(null);
-            if (user == null) {
-                response.setStatusCode(404);
-                response.setError("User not found. Please sign up first.");
-                return response;
-            }
-
-            // Tạo token JWT
-            String jwt = jwtUtils.generateToken(user);
-            String refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), user);
-
-            response.setUser(user);
-            response.setToken(jwt);
-            response.setRefreshToken(refreshToken);
-            response.setStatusCode(200);
-            response.setMessage("Google Sign In thành công");
-        } catch (Exception e) {
-            response.setStatusCode(500);
-            response.setError("Lỗi server: " + e.getMessage());
-        }
-        return response;
-    }
-
 }
